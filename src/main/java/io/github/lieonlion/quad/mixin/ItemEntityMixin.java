@@ -28,11 +28,9 @@ public abstract class ItemEntityMixin extends Entity {
     private void applyTagImmuneDamages(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (!this.getStack().isEmpty() && this.getStack().isIn(QuadItemTags.IMMUNE_EXPLOSION) && source.isIn(DamageTypeTags.IS_EXPLOSION)) {
             cir.setReturnValue(false);
-        }
-        if (!this.getStack().isEmpty() && this.getStack().isIn(QuadItemTags.IMMUNE_CACTUS) && source.isOf(DamageTypes.CACTUS)) {
+        } if (!this.getStack().isEmpty() && this.getStack().isIn(QuadItemTags.IMMUNE_CACTUS) && source.isOf(DamageTypes.CACTUS)) {
             cir.setReturnValue(false);
-        }
-        if (!this.getStack().isEmpty() && this.getStack().isIn(QuadItemTags.IMMUNE_LIGHTNING) && source.isIn(DamageTypeTags.IS_LIGHTNING)) {
+        } if (!this.getStack().isEmpty() && this.getStack().isIn(QuadItemTags.IMMUNE_LIGHTNING) && source.isIn(DamageTypeTags.IS_LIGHTNING)) {
             cir.setReturnValue(false);
         }
     }
