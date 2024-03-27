@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "io.github.lieonlion.quad.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "IronGolemEntityMixin",
+    "ItemEntityMixin",
+    "PowderedSnowBlockMixin",
+    "TntBlockMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}

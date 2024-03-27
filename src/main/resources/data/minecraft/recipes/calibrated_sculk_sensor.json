@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "A": {
+      "tag": "c:amethyst_shards"
+    },
+    "S": {
+      "item": "minecraft:sculk_sensor"
+    }
+  },
+  "pattern": [
+    " A ",
+    "ASA"
+  ],
+  "result": {
+    "item": "minecraft:calibrated_sculk_sensor"
+  },
+  "show_notification": true
+}

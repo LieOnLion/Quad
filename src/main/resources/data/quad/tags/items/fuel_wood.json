@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#lolmcv:chest_is_fuel",
+      "required": false
+    },
+    {
+      "id": "#lolmct:table_is_fuel",
+      "required": false
+    }
+  ]
+}

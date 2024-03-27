@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "tag": "c:amethyst_shards"
+    },
+    "C": {
+      "tag": "c:copper_ingots"
+    }
+  },
+  "pattern": [
+    "A",
+    "C",
+    "C"
+  ],
+  "result": {
+    "item": "minecraft:spyglass"
+  },
+  "show_notification": true
+}
