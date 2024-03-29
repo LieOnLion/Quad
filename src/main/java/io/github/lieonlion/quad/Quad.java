@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 
 public class Quad implements ModInitializer {
 	public static final String MODID = "quad";
-
 	public static final Logger LOGGER = LoggerFactory.getLogger("Quad");
 
 	@Override

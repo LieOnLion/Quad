@@ -34,6 +34,7 @@ public class QuadItemTags {
     public static final TagKey<Item> NO_GRAVITY = createTag("no_gravity");
 
     public static final TagKey<Item> IRON_GOLEM_HEAL = createTag("iron_golem_heal");
+    public static final TagKey<Item> ENDER_MASK = createTag("ender_mask");
     public static final TagKey<Item> TNT_IGNITERS = createTag("tnt_igniters");
 
     private static TagKey<Item> createTag(String name) {

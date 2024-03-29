@@ -2,6 +2,7 @@ package io.github.lieonlion.quad.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import io.github.lieonlion.quad.Quad;
 import io.github.lieonlion.quad.tags.QuadItemTags;
 import net.minecraft.block.PowderSnowBlock;
 import net.minecraft.entity.Entity;
@@ -24,7 +25,7 @@ public abstract class PowderedSnowBlockMixin {
 
     @WrapOperation(method = "canWalkOnPowderSnow", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
     private static boolean applyTagSnowBoots(ItemStack instance, Item item, Operation<Boolean> original) {
-        return (item.getRegistryEntry().isIn(QuadItemTags.SNOW_BOOTS) && original.call(instance, item))
+        return item.getRegistryEntry().isIn(QuadItemTags.SNOW_BOOTS) && original.call(instance, item)
                 || instance.isIn(QuadItemTags.SNOW_BOOTS);
     }
 }

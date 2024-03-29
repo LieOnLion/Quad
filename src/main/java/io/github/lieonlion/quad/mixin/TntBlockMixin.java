@@ -2,6 +2,7 @@ package io.github.lieonlion.quad.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import io.github.lieonlion.quad.Quad;
 import io.github.lieonlion.quad.tags.QuadItemTags;
 import net.minecraft.block.TntBlock;
 import net.minecraft.item.Item;
@@ -18,7 +19,7 @@ public abstract class TntBlockMixin {
     }
 
     @WrapOperation(method = "onUse", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z", ordinal = 2))
-    private boolean applyIfDamageable(ItemStack instance, Item item, Operation<Boolean> original) {
+    private boolean applyIsDamageable(ItemStack instance, Item item, Operation<Boolean> original) {
         return (instance.isDamageable() && original.call(instance, item)) || instance.isDamageable();
     }
 }
