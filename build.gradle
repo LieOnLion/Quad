@@ -3,10 +3,11 @@ plugins {
 	id 'maven-publish'
 }
 
+version = "${mod_version}+${minecraft_version}-Fabric"
 group = project.mod_group_id
 
 base {
-	archivesName = "${mod_name}-${mod_version}+${minecraft_version}-Fabric"
+	archivesName = mod_name
 }
 
 repositories {
@@ -20,11 +21,6 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
-	modApi "com.terraformersmc:modmenu:9.0.0"
-	modApi("me.shedaniel.cloth:cloth-config-fabric:13.0.121") {
-		exclude(group: "net.fabricmc.fabric-api")
-	}
 }
 
 processResources {

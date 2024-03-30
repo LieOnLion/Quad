@@ -8,6 +8,10 @@
     {
       "id": "#lolmct:table_is_fuel",
       "required": false
+    },
+    {
+      "id": "#lolmbv:bookshelf_is_fuel",
+      "required": false
     }
   ]
 }

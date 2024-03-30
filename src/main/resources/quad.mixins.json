@@ -6,6 +6,7 @@
     "EndermanEntityMixin",
     "IronGolemEntityMixin",
     "ItemEntityMixin",
+    "PiglinBrainMixin",
     "PowderedSnowBlockMixin",
     "TntBlockMixin"
   ],

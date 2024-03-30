@@ -13,6 +13,10 @@
       "id": "#lolmct:table_fire_immune",
       "required": false
     },
+    {
+      "id": "#lolmbv:bookshelf_fire_immune",
+      "required": false
+    },
     "minecraft:wither_skeleton_skull",
     "minecraft:crimson_stem",
     "minecraft:crimson_hyphae",

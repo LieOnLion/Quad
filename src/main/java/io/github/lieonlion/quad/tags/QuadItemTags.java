@@ -1,7 +1,6 @@
 package io.github.lieonlion.quad.tags;
 
 import io.github.lieonlion.quad.Quad;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
@@ -35,6 +34,7 @@ public class QuadItemTags {
 
     public static final TagKey<Item> IRON_GOLEM_HEAL = createTag("iron_golem_heal");
     public static final TagKey<Item> ENDER_MASK = createTag("ender_mask");
+    public static final TagKey<Item> PIGLIN_ARMOUR = createTag("piglin_armour");
     public static final TagKey<Item> TNT_IGNITERS = createTag("tnt_igniters");
 
     private static TagKey<Item> createTag(String name) {
