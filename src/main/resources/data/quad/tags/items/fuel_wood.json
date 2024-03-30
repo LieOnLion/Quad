@@ -9,6 +9,9 @@
       "id": "#lolmct:table_is_fuel",
       "required": false
     },
-    "minecraft:diamond"
+    {
+      "id": "#lolmbv:bookshelf_is_fuel",
+      "required": false
+    }
   ]
 }

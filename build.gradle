@@ -6,10 +6,11 @@ plugins {
     id 'org.spongepowered.mixin' version '0.7.+'
 }
 
+version = "${mod_version}+${minecraft_version}-Forge"
 group = project.mod_group_id
 
 base {
-    archivesName = "${mod_name}-${mod_version}+${minecraft_version}-Forge"
+    archivesName = mod_name
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -76,7 +77,7 @@ tasks.named('jar', Jar).configure {
             'Specification-Vendor'    : mod_authors,
             'Specification-Version'   : '1',
             'Implementation-Title'    : project.name,
-            'Implementation-Version'  : project.jar.archiveVersion,
+            'Implementation-Version'  : mod_version,
             'Implementation-Vendor'   : mod_authors
         ])
     }
