@@ -22,6 +22,6 @@ public abstract class CatSitOnBlockGoalMixin {
     @WrapOperation(method = "isValidTarget", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/world/level/block/Block;)Z", ordinal = 1))
     private boolean applyCatSitOnFurnaceTag(BlockState instance, Block block, Operation<Boolean> original) {
         return (original.call(instance, block) && block.builtInRegistryHolder().is(QuadBlockTags.CAT_SIT_ON_FURNACE))
-                || (instance.getBlock() instanceof FurnaceBlock && instance.is(QuadBlockTags.CAT_SIT_ON_CHEST));
+                || (instance.getBlock() instanceof FurnaceBlock && instance.is(QuadBlockTags.CAT_SIT_ON_FURNACE));
     }
 }
