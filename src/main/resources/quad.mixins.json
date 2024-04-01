@@ -3,11 +3,13 @@
   "package": "io.github.lieonlion.quad.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "CatSitOnBlockGoalMixin",
     "EndermanEntityMixin",
     "IronGolemEntityMixin",
     "ItemEntityMixin",
     "PiglinBrainMixin",
     "PowderedSnowBlockMixin",
+    "RespawnAnchorBlockMixin",
     "TntBlockMixin"
   ],
   "injectors": {

@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:chest",
+    {
+      "id": "#lolmcv:more_chest",
+      "required": false
+    },
+    {
+      "id": "lootr:lootr_chest",
+      "required": false
+    }
+  ]
+}
