@@ -5,6 +5,7 @@
   "mixins": [
     "CatSitOnBlockGoalMixin",
     "EndermanEntityMixin",
+    "GoToBedAndSleepGoalMixin",
     "IronGolemEntityMixin",
     "ItemEntityMixin",
     "PiglinBrainMixin",
