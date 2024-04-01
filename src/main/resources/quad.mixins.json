@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "quad.refmap.json",
   "mixins": [
+    "CatLieOnBedGoalMixin",
     "CatSitOnBlockGoalMixin",
     "EnderManMixin",
     "IronGolemMixin",

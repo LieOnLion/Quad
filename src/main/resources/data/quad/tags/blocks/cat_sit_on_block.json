@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "minecraft:furnace",
     "minecraft:chest",
     {
       "id": "#lolmcv:more_chest",
