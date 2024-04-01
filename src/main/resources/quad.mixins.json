@@ -4,11 +4,13 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "quad.refmap.json",
   "mixins": [
+    "CatSitOnBlockGoalMixin",
     "EnderManMixin",
     "IronGolemMixin",
     "ItemEntityMixin",
     "PiglinAiMixin",
     "PowderedSnowBlockMixin",
+    "RespawnAnchorBlockMixin",
     "TntBlockMixin"
   ],
   "injectors": {

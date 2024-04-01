@@ -36,6 +36,7 @@ public class QuadItemTags {
     public static final TagKey<Item> ENDER_MASK = createTag("ender_mask");
     public static final TagKey<Item> PIGLIN_ARMOUR = createTag("piglin_armour");
     public static final TagKey<Item> TNT_IGNITERS = createTag("tnt_igniters");
+    public static final TagKey<Item> RESPAWN_ANCHOR_CHARGER = createTag("respawn_anchor_charger");
 
     private static TagKey<Item> createTag(String name) {
         return TagKey.create(Registries.ITEM, new ResourceLocation(Quad.MODID, name));
