@@ -9,6 +9,7 @@
     "EnderManMixin",
     "IronGolemMixin",
     "ItemEntityMixin",
+    "ParrotMixin",
     "PiglinAiMixin",
     "PowderedSnowBlockMixin",
     "RespawnAnchorBlockMixin",

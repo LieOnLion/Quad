@@ -7,9 +7,9 @@ import io.github.lieonlion.quad.tags.QuadBlockTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.ai.goal.CatSitOnBlockGoal;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.AbstractFurnaceBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ChestBlock;
-import net.minecraft.world.level.block.FurnaceBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -25,13 +25,13 @@ public abstract class CatSitOnBlockGoalMixin {
     @WrapOperation(method = "isValidTarget", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/world/level/block/Block;)Z", ordinal = 1))
     private boolean applyCatSitOnFurnaceTag(BlockState instance, Block block, Operation<Boolean> original) {
         return (original.call(instance, block) && block.builtInRegistryHolder().is(QuadBlockTags.CAT_SIT_ON_BLOCK))
-                || (instance.getBlock() instanceof FurnaceBlock && instance.is(QuadBlockTags.CAT_SIT_ON_BLOCK));
+                || (instance.getBlock() instanceof AbstractFurnaceBlock && instance.is(QuadBlockTags.CAT_SIT_ON_BLOCK));
     }
 
     @ModifyReturnValue(method = "isValidTarget", at = @At(value = "RETURN"))
     private boolean applyCatSitOnBlockTag(boolean original, LevelReader level, BlockPos pos) {
         BlockState blockstate = level.getBlockState(pos);
         return original || (level.isEmptyBlock(pos.above()) && blockstate.is(QuadBlockTags.CAT_SIT_ON_BLOCK)
-                && !(blockstate.getBlock() instanceof FurnaceBlock) && !(blockstate.getBlock() instanceof ChestBlock));
+                && !(blockstate.getBlock() instanceof AbstractFurnaceBlock) && !(blockstate.getBlock() instanceof ChestBlock));
     }
 }
