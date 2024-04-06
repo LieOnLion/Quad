@@ -35,6 +35,7 @@ public class QuadItemTags {
     public static final TagKey<Item> IRON_GOLEM_HEAL = createTag("iron_golem_heal");
     public static final TagKey<Item> ENDER_MASK = createTag("ender_mask");
     public static final TagKey<Item> PIGLIN_ARMOUR = createTag("piglin_armour");
+    public static final TagKey<Item> PARROT_POISON = createTag("parrot_poison");
     public static final TagKey<Item> TNT_IGNITERS = createTag("tnt_igniters");
     public static final TagKey<Item> RESPAWN_ANCHOR_CHARGER = createTag("respawn_anchor_charger");
 

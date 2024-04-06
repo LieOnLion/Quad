@@ -25,7 +25,7 @@ public abstract class PowderedSnowBlockMixin {
 
     @WrapOperation(method = "canWalkOnPowderSnow", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
     private static boolean applyTagSnowBoots(ItemStack instance, Item item, Operation<Boolean> original) {
-        return item.getRegistryEntry().isIn(QuadItemTags.SNOW_BOOTS) && original.call(instance, item)
+        return (item.getRegistryEntry().isIn(QuadItemTags.SNOW_BOOTS) && original.call(instance, item))
                 || instance.isIn(QuadItemTags.SNOW_BOOTS);
     }
 }

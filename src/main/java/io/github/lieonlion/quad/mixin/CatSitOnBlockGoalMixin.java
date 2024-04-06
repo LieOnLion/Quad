@@ -4,10 +4,7 @@ import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import io.github.lieonlion.quad.tags.QuadBlockTags;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ChestBlock;
-import net.minecraft.block.FurnaceBlock;
+import net.minecraft.block.*;
 import net.minecraft.entity.ai.goal.CatSitOnBlockGoal;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldView;
@@ -25,13 +22,13 @@ public abstract class CatSitOnBlockGoalMixin {
     @WrapOperation(method = "isTargetPos", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z", ordinal = 1))
     private boolean applyCatSitOnFurnaceTag(BlockState instance, Block block, Operation<Boolean> original) {
         return (original.call(instance, block) && block.getRegistryEntry().isIn(QuadBlockTags.CAT_SIT_ON_BLOCK))
-                || (instance.getBlock() instanceof FurnaceBlock && instance.isIn(QuadBlockTags.CAT_SIT_ON_BLOCK));
+                || (instance.getBlock() instanceof AbstractFurnaceBlock && instance.isIn(QuadBlockTags.CAT_SIT_ON_BLOCK));
     }
 
     @ModifyReturnValue(method = "isTargetPos", at = @At(value = "RETURN"))
     private boolean applyCatSitOnBlockTag(boolean original, WorldView world, BlockPos pos) {
         BlockState blockstate = world.getBlockState(pos);
         return original || (world.isAir(pos.up()) && blockstate.isIn(QuadBlockTags.CAT_SIT_ON_BLOCK)
-                && !(blockstate.getBlock() instanceof FurnaceBlock) && !(blockstate.getBlock() instanceof ChestBlock));
+                && !(blockstate.getBlock() instanceof AbstractFurnaceBlock) && !(blockstate.getBlock() instanceof ChestBlock));
     }
 }
