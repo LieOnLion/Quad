@@ -8,6 +8,10 @@
       "required": false
     },
     {
+      "id": "#lolmfv:more_furnace",
+      "required": false
+    },
+    {
       "id": "lootr:lootr_chest",
       "required": false
     }
