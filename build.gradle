@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.5-SNAPSHOT'
+	id 'fabric-loom' version '1.6-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -10,10 +10,7 @@ base {
 	archivesName = mod_name
 }
 
-repositories {
-	maven { url "https://maven.shedaniel.me/" }
-	maven { url "https://maven.terraformersmc.com/releases/" }
-}
+repositories {}
 
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"

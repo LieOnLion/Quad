@@ -1,6 +1,5 @@
 package io.github.lieonlion.quad.registry;
 
-import io.github.lieonlion.quad.Quad;
 import io.github.lieonlion.quad.tags.QuadItemTags;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 
