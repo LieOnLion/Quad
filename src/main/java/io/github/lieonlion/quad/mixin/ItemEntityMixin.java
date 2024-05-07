@@ -18,11 +18,11 @@ public abstract class ItemEntityMixin {
     @Shadow public abstract ItemStack getItem();
 
     @WrapOperation(method = "hurt", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/item/ItemEntity;isInvulnerableTo(Lnet/minecraft/world/damagesource/DamageSource;)Z"))
-    private boolean applyTagImmuneDamages(ItemEntity instance, DamageSource damageSource, Operation<Boolean> original) {
+    private boolean applyTagsImmuneDamages(ItemEntity instance, DamageSource damageSource, Operation<Boolean> original) {
         return original.call(instance, damageSource) || !this.getItem().isEmpty() &&
-                (this.getItem().is(QuadItemTags.IMMUNE_CACTUS) && damageSource.is(DamageTypes.CACTUS)) ||
+                ((this.getItem().is(QuadItemTags.IMMUNE_CACTUS) && damageSource.is(DamageTypes.CACTUS)) ||
                 (this.getItem().is(QuadItemTags.IMMUNE_EXPLOSION) && damageSource.is(DamageTypeTags.IS_EXPLOSION)) ||
-                (this.getItem().is(QuadItemTags.IMMUNE_LIGHTNING) && damageSource.is(DamageTypeTags.IS_LIGHTNING));
+                (this.getItem().is(QuadItemTags.IMMUNE_LIGHTNING) && damageSource.is(DamageTypeTags.IS_LIGHTNING)));
     }
 
     @ModifyReturnValue(method = "fireImmune", at = @At(value = "RETURN"))

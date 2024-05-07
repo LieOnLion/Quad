@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(CatLieOnBedGoal.class)
 public abstract class CatLieOnBedGoalMixin {
     @ModifyReturnValue(method = "isValidTarget", at = @At(value = "RETURN"))
-    private boolean applyCatLieOnBlockTag(boolean original, LevelReader level, BlockPos pos) {
-        return original || (level.isEmptyBlock(pos.above()) && level.getBlockState(pos).is(QuadBlockTags.CAT_LIE_ON_BLOCK));
+    private boolean applyTagCatsOnBlocksLie(boolean original, LevelReader level, BlockPos pos) {
+        return original || (level.isEmptyBlock(pos.above()) && level.getBlockState(pos).is(QuadBlockTags.CATS_ON_BLOCKS_LIE));
     }
 }

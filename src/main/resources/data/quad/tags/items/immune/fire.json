@@ -2,19 +2,7 @@
   "replace": false,
   "values": [
     {
-      "id": "#quad:immune_all",
-      "required": false
-    },
-    {
-      "id": "#lolmcv:chest_fire_immune",
-      "required": false
-    },
-    {
-      "id": "#lolmct:table_fire_immune",
-      "required": false
-    },
-    {
-      "id": "#lolmbv:bookshelf_fire_immune",
+      "id": "#quad:immune/all",
       "required": false
     },
     "minecraft:wither_skeleton_skull",
