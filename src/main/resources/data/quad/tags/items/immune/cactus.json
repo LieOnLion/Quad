@@ -2,7 +2,7 @@
   "replace": false,
   "values": [
     {
-      "id": "#quad:immune_all",
+      "id": "#quad:immune/all",
       "required": false
     }
   ]

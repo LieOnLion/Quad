@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    {
-      "id": "#woodentoolvariants:tool_is_fuel",
-      "required": false
-    }
-  ]
-}

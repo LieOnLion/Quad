@@ -4,13 +4,16 @@ import io.github.lieonlion.quad.Quad;
 import net.minecraft.block.Block;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
 
 public class QuadBlockTags {
-    public static final TagKey<Block> CAT_SIT_ON_BLOCK = createTag("cat_sit_on_block");
-    public static final TagKey<Block> CAT_LIE_ON_BLOCK = createTag("cat_lie_on_block");
+    public static final TagKey<Block> CATS_ON_BLOCKS_SIT = createTag("cats_on_blocks/sit");
+    public static final TagKey<Block> CATS_ON_BLOCKS_LIE = createTag("cats_on_blocks/lie");
 
-    private static TagKey<Block> createTag(String name) {
-        return TagKey.of(RegistryKeys.BLOCK, new Identifier(Quad.MODID, name));
+    public static final TagKey<Block> WHEN_STEPPED_ON_BURNS = createTag("when_stepped_on/burns");
+    public static final TagKey<Block> WHEN_STEPPED_ON_SLOWS = createTag("when_stepped_on/slows");
+    public static final TagKey<Block> WHEN_STEPPED_ON_STICKS = createTag("when_stepped_on/sticks");
+
+    private static TagKey<Block> createTag(String id) {
+        return TagKey.of(RegistryKeys.BLOCK, Quad.asId(id));
     }
 }

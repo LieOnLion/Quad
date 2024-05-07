@@ -12,8 +12,8 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(IronGolemEntity.class)
 public abstract class IronGolemEntityMixin {
     @WrapOperation(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
-    private boolean applyTagIronGolemHeal(ItemStack instance, Item item, Operation<Boolean> original) {
-        return (item.getRegistryEntry().isIn(QuadItemTags.IRON_GOLEM_HEAL) && original.call(instance, item))
-                || instance.isIn(QuadItemTags.IRON_GOLEM_HEAL);
+    private boolean applyTagIronGolemHealer(ItemStack instance, Item item, Operation<Boolean> original) {
+        return (item.getRegistryEntry().isIn(QuadItemTags.IRON_GOLEM_HEALER) && original.call(instance, item))
+                || instance.isIn(QuadItemTags.IRON_GOLEM_HEALER);
     }
 }

@@ -14,21 +14,21 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(CatSitOnBlockGoal.class)
 public abstract class CatSitOnBlockGoalMixin {
     @WrapOperation(method = "isTargetPos", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z", ordinal = 0))
-    private boolean applyCatSitOnChestTag(BlockState instance, Block block, Operation<Boolean> original) {
-        return (original.call(instance, block) && block.getRegistryEntry().isIn(QuadBlockTags.CAT_SIT_ON_BLOCK))
-                || (instance.getBlock() instanceof ChestBlock && instance.isIn(QuadBlockTags.CAT_SIT_ON_BLOCK));
+    private boolean applyTagCatsOnBlocksSit1(BlockState instance, Block block, Operation<Boolean> original) {
+        return (original.call(instance, block) && block.getRegistryEntry().isIn(QuadBlockTags.CATS_ON_BLOCKS_SIT))
+                || (instance.getBlock() instanceof ChestBlock && instance.isIn(QuadBlockTags.CATS_ON_BLOCKS_SIT));
     }
 
     @WrapOperation(method = "isTargetPos", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z", ordinal = 1))
-    private boolean applyCatSitOnFurnaceTag(BlockState instance, Block block, Operation<Boolean> original) {
-        return (original.call(instance, block) && block.getRegistryEntry().isIn(QuadBlockTags.CAT_SIT_ON_BLOCK))
-                || (instance.getBlock() instanceof AbstractFurnaceBlock && instance.isIn(QuadBlockTags.CAT_SIT_ON_BLOCK));
+    private boolean applyTagCatsOnBlocksSit2(BlockState instance, Block block, Operation<Boolean> original) {
+        return (original.call(instance, block) && block.getRegistryEntry().isIn(QuadBlockTags.CATS_ON_BLOCKS_SIT))
+                || (instance.getBlock() instanceof AbstractFurnaceBlock && instance.isIn(QuadBlockTags.CATS_ON_BLOCKS_SIT));
     }
 
     @ModifyReturnValue(method = "isTargetPos", at = @At(value = "RETURN"))
-    private boolean applyCatSitOnBlockTag(boolean original, WorldView world, BlockPos pos) {
-        BlockState blockstate = world.getBlockState(pos);
-        return original || (world.isAir(pos.up()) && blockstate.isIn(QuadBlockTags.CAT_SIT_ON_BLOCK)
-                && !(blockstate.getBlock() instanceof AbstractFurnaceBlock) && !(blockstate.getBlock() instanceof ChestBlock));
+    private boolean applyTagCatsOnBlocksSit3(boolean original, WorldView world, BlockPos pos) {
+        BlockState state = world.getBlockState(pos);
+        return original || (world.isAir(pos.up()) && state.isIn(QuadBlockTags.CATS_ON_BLOCKS_SIT)
+                && !(state.getBlock() instanceof AbstractFurnaceBlock) && !(state.getBlock() instanceof ChestBlock));
     }
 }

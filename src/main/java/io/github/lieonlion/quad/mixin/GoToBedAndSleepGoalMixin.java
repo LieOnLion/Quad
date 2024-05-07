@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(GoToBedAndSleepGoal.class)
 public abstract class GoToBedAndSleepGoalMixin {
     @ModifyReturnValue(method = "isTargetPos", at = @At(value = "RETURN"))
-    private boolean applyCatLieOnBlockTag(boolean original, WorldView world, BlockPos pos) {
-        return original || (world.isAir(pos.up()) && world.getBlockState(pos).isIn(QuadBlockTags.CAT_LIE_ON_BLOCK));
+    private boolean applyTagCatsOnBlocksLie(boolean original, WorldView world, BlockPos pos) {
+        return original || (world.isAir(pos.up()) && world.getBlockState(pos).isIn(QuadBlockTags.CATS_ON_BLOCKS_LIE));
     }
 }
