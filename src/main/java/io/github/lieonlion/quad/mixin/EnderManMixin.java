@@ -7,7 +7,7 @@ import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(EnderMan.class)
+@Mixin(value = EnderMan.class, priority = 1004)
 public abstract class EnderManMixin {
     @ModifyReturnValue(method = "isLookingAtMe", at = @At(value = "RETURN"))
     private boolean applyTagEndermanPacifier(boolean original, Player player) {

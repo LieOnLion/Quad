@@ -14,7 +14,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(CandleBlock.class)
+@Mixin(value = CandleBlock.class, priority = 1004)
 public abstract class CandleBlockMixin {
     @ModifyReturnValue(method = "use", at = @At(value = "RETURN"))
     private InteractionResult applyTagFireLighters(InteractionResult original, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {

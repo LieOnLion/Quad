@@ -7,7 +7,7 @@ import net.minecraft.world.level.block.RespawnAnchorBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(RespawnAnchorBlock.class)
+@Mixin(value = RespawnAnchorBlock.class, priority = 1004)
 public abstract class RespawnAnchorBlockMixin {
     @ModifyReturnValue(method = "isRespawnFuel", at = @At(value = "RETURN"))
     private static boolean applyTagRespawnAnchorCharger(boolean original, ItemStack stack) {
