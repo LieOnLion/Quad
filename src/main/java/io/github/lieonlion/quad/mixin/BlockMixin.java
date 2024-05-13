@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(Block.class)
+@Mixin(value = Block.class, priority = 1004)
 public abstract class BlockMixin {
     @Shadow public abstract BlockState getDefaultState();
 

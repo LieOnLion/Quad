@@ -13,6 +13,8 @@ public class QuadBlockTags {
     public static final TagKey<Block> WHEN_STEPPED_ON_SLOWS = createTag("when_stepped_on/slows");
     public static final TagKey<Block> WHEN_STEPPED_ON_STICKS = createTag("when_stepped_on/sticks");
 
+    public static final TagKey<Block> NETHER_PORTAL_FRAME = createTag("nether_portal_frame");
+
     private static TagKey<Block> createTag(String id) {
         return TagKey.of(RegistryKeys.BLOCK, Quad.asId(id));
     }

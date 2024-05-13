@@ -10,6 +10,12 @@ base {
 	archivesName = mod_name
 }
 
+loom {
+	mixin {
+		setDefaultRefmapName("${mod_id}.refmap.json")
+	}
+}
+
 repositories {}
 
 dependencies {

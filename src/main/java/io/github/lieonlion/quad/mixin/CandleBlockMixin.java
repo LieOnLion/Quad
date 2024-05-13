@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(CandleBlock.class)
+@Mixin(value = CandleBlock.class, priority = 1004)
 public abstract class CandleBlockMixin {
     @ModifyReturnValue(method = "onUse", at = @At(value = "RETURN"))
     private ActionResult applyTagFireLighters(ActionResult original, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {

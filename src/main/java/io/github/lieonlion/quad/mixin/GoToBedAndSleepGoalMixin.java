@@ -8,7 +8,7 @@ import net.minecraft.world.WorldView;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(GoToBedAndSleepGoal.class)
+@Mixin(value = GoToBedAndSleepGoal.class, priority = 1004)
 public abstract class GoToBedAndSleepGoalMixin {
     @ModifyReturnValue(method = "isTargetPos", at = @At(value = "RETURN"))
     private boolean applyTagCatsOnBlocksLie(boolean original, WorldView world, BlockPos pos) {
