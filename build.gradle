@@ -22,7 +22,7 @@ dependencies {
 
 loom {
 	mixin {
-		defaultRefmapName.set("${mod_id}.refmap.json")
+		setDefaultRefmapName("${mod_id}.refmap.json")
 	}
 }
 

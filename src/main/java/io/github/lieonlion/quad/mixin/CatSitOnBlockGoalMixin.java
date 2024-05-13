@@ -11,7 +11,7 @@ import net.minecraft.world.WorldView;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(CatSitOnBlockGoal.class)
+@Mixin(value = CatSitOnBlockGoal.class, priority = 1004)
 public abstract class CatSitOnBlockGoalMixin {
     @WrapOperation(method = "isTargetPos", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z", ordinal = 0))
     private boolean applyTagCatsOnBlocksSit1(BlockState instance, Block block, Operation<Boolean> original) {

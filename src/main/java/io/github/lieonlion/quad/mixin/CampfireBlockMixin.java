@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(CampfireBlock.class)
+@Mixin(value = CampfireBlock.class, priority = 1004)
 public abstract class CampfireBlockMixin {
     @ModifyReturnValue(method = "onUseWithItem", at = @At(value = "RETURN"))
     private ItemActionResult applyTagFireLighters(ItemActionResult original, ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {

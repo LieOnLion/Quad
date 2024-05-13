@@ -7,7 +7,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(EndermanEntity.class)
+@Mixin(value = EndermanEntity.class, priority = 1004)
 public abstract class EndermanEntityMixin {
     @ModifyReturnValue(method = "isPlayerStaring", at = @At(value = "RETURN"))
     private boolean applyTagEndermanPacifier(boolean original, PlayerEntity player) {

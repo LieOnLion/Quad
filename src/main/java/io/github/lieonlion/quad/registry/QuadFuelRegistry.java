@@ -2,6 +2,7 @@ package io.github.lieonlion.quad.registry;
 
 import io.github.lieonlion.quad.tags.QuadItemTags;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
+import net.minecraft.item.Items;
 
 public class QuadFuelRegistry {
     static FuelRegistry fuelRegistry = FuelRegistry.INSTANCE;
