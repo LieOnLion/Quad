@@ -3,11 +3,13 @@
   "package": "io.github.lieonlion.quad.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "BaseFireBlockMixin",
     "BlockMixin",
     "CampfireBlockMixin",
     "CandleBlockMixin",
     "CandleCakeBlockMixin",
     "CatLieOnBedGoalMixin",
+    "CatMixin",
     "CatSitOnBlockGoalMixin",
     "CreeperEntityMixin",
     "EnderManMixin",
@@ -15,10 +17,12 @@
     "ItemEntityMixin",
     "MagmaBlockMixin",
     "PiglinAiMixin",
+    "PortalShapeMixin",
     "PowderedSnowBlockMixin",
     "RespawnAnchorBlockMixin",
     "TntBlockInvoker",
-    "TntBlockMixin"
+    "TntBlockMixin",
+    "WolfEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
