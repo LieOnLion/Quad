@@ -21,7 +21,7 @@ public class Quad implements ModInitializer {
 		QuadFuelRegistry.registerFuel();
 
 		ServerEntityEvents.ENTITY_LOAD.register((entity, world) -> {
-			if(entity instanceof ItemEntity itemEntity && !world.isClient) {
+			if (entity instanceof ItemEntity itemEntity && !world.isClient) {
 				if (itemEntity.getStack().isIn(QuadItemTags.NEVER_DESPAWN)) {
 					itemEntity.setNeverDespawn();
 				} if (itemEntity.getStack().isIn(QuadItemTags.NO_GRAVITY)) {
