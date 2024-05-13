@@ -4,11 +4,13 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "quad.refmap.json",
   "mixins": [
+    "BaseFireBlockMixin",
     "BlockMixin",
     "CampfireBlockMixin",
     "CandleBlockMixin",
     "CandleCakeBlockMixin",
     "CatLieOnBedGoalMixin",
+    "CatMixin",
     "CatSitOnBlockGoalMixin",
     "CreeperEntityMixin",
     "EnderManMixin",
@@ -16,10 +18,12 @@
     "ItemEntityMixin",
     "MagmaBlockMixin",
     "PiglinAiMixin",
+    "PortalShapeMixin",
     "PowderedSnowBlockMixin",
     "RespawnAnchorBlockMixin",
     "TntBlockInvoker",
-    "TntBlockMixin"
+    "TntBlockMixin",
+    "WolfEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

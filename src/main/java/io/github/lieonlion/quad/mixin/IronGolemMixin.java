@@ -9,7 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(IronGolem.class)
+@Mixin(value = IronGolem.class, priority = 1004)
 public abstract class IronGolemMixin {
     @WrapOperation(method = "mobInteract", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z"))
     private boolean applyTagIronGolemHealer(ItemStack instance, Item item, Operation<Boolean> original) {

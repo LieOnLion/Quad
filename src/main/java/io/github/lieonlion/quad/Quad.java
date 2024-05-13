@@ -31,6 +31,8 @@ public class Quad {
                 itemEntity.setUnlimitedLifetime();
             } if (itemEntity.getItem().is(QuadItemTags.NO_GRAVITY)) {
                 itemEntity.setNoGravity(true);
+            } else if (itemEntity.isNoGravity()) {
+                itemEntity.setNoGravity(false);
             }
         }
     }

@@ -17,7 +17,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(CampfireBlock.class)
+@Mixin(value = CampfireBlock.class, priority = 1004)
 public abstract class CampfireBlockMixin {
     @ModifyReturnValue(method = "use", at = @At(value = "RETURN"))
     private InteractionResult applyTagFireLighters(InteractionResult original, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
