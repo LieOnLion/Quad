@@ -7,6 +7,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
+import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,19 +20,22 @@ public class Quad {
         LOGGER.info("[Quad] Initialising the Quad mod power! >:P");
 
         NeoForge.EVENT_BUS.addListener(QuadFuelRegistry::onFurnaceFuelBurnTime);
-        NeoForge.EVENT_BUS.addListener(Quad::entityLoad);
-    }
-
-    public static void entityLoad(EntityJoinLevelEvent event) {
-        if (event.getEntity() instanceof ItemEntity itemEntity) {
-            if (itemEntity.getItem().is(QuadItemTags.NEVER_DESPAWN)) {
-                itemEntity.setUnlimitedLifetime();
-            } if (itemEntity.getItem().is(QuadItemTags.NO_GRAVITY)) {
-                itemEntity.setNoGravity(true);
-            } else if (itemEntity.isNoGravity()) {
-                itemEntity.setNoGravity(false);
+        NeoForge.EVENT_BUS.addListener((EntityJoinLevelEvent event) -> {
+            if (event.getEntity() instanceof ItemEntity itemEntity) {
+                if (itemEntity.getItem().is(QuadItemTags.NEVER_DESPAWN)) {
+                    itemEntity.setUnlimitedLifetime();
+                } if (itemEntity.getItem().is(QuadItemTags.NO_GRAVITY)) {
+                    itemEntity.setNoGravity(true);
+                } else if (itemEntity.isNoGravity()) {
+                    itemEntity.setNoGravity(false);
+                }
             }
-        }
+        });
+
+        //caching original fuel map when server started
+        NeoForge.EVENT_BUS.addListener((ServerStartedEvent event) -> QuadFuelRegistry.makeMap());
+        //(neo)forge event for items fuel times
+        NeoForge.EVENT_BUS.addListener(QuadFuelRegistry::onFurnaceFuelBurnTime);
     }
 
     public static ResourceLocation asId(String id) {

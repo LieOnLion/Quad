@@ -11,18 +11,20 @@
     "CatLieOnBedGoalMixin",
     "CatMixin",
     "CatSitOnBlockGoalMixin",
-    "CreeperEntityMixin",
+    "ConduitBlockEntityMixin",
+    "CreeperMixin",
     "EnderManMixin",
     "IronGolemMixin",
     "ItemEntityMixin",
     "MagmaBlockMixin",
+    "MinecartFurnaceMixin",
     "PiglinAiMixin",
+    "PortalForcerMixin",
     "PortalShapeMixin",
     "PowderedSnowBlockMixin",
     "RespawnAnchorBlockMixin",
-    "TntBlockInvoker",
     "TntBlockMixin",
-    "WolfEntityMixin"
+    "WolfMixin"
   ],
   "injectors": {
     "defaultRequire": 1
