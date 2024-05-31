@@ -1,9 +1,9 @@
 package io.github.lieonlion.quad.tags;
 
 import io.github.lieonlion.quad.Quad;
-import net.minecraft.item.Item;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.TagKey;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 
 public class QuadItemTags {
     public static final TagKey<Item> FUEL_LAVA = createTag("fuel/lava"); //20000
@@ -40,6 +40,6 @@ public class QuadItemTags {
     public static final TagKey<Item> RESPAWN_ANCHOR_CHARGER = createTag("respawn_anchor_charger");
 
     private static TagKey<Item> createTag(String id) {
-        return TagKey.of(RegistryKeys.ITEM, Quad.asId(id));
+        return TagKey.create(Registries.ITEM, Quad.asId(id));
     }
 }

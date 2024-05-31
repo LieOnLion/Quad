@@ -1,13 +1,13 @@
 package io.github.lieonlion.quad.enchantment;
 
 import io.github.lieonlion.quad.tags.QuadEnchantmentTags;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.tag.TagKey;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
 import java.util.Map;
 
@@ -26,16 +26,16 @@ public class QuadEnchantmentHelper {
 
     public static Enchantment getEnchantmentFromTag(TagKey<Enchantment> enchantmentTagKey, ItemStack stack) {
         if (stack == null) return null;
-        for (Map.Entry<Enchantment, Integer> entry : EnchantmentHelper.get(stack).entrySet()) {
+        for (Map.Entry<Enchantment, Integer> entry : EnchantmentHelper.getEnchantments(stack).entrySet()) {
             Enchantment enchantment = entry.getKey();
-            if (getRegistryEntry(enchantment).isIn(enchantmentTagKey)) {
+            if (getRegistryHolder(enchantment).is(enchantmentTagKey)) {
                 return enchantment;
             }
         } return null;
     }
 
     public static ItemStack getEquipmentFromTag(TagKey<Enchantment> enchantmentTagKey, LivingEntity living) {
-        for (ItemStack stack : living.getArmorItems()) {
+        for (ItemStack stack : living.getArmorSlots()) {
             if (hasEnchantmentFromTag(enchantmentTagKey, stack)) {
                 return stack;
             }
@@ -43,7 +43,7 @@ public class QuadEnchantmentHelper {
     }
 
     public static int getLevel(Enchantment enchantment, ItemStack stack) {
-        for (Map.Entry<Enchantment, Integer> entry : EnchantmentHelper.get(stack).entrySet()) {
+        for (Map.Entry<Enchantment, Integer> entry : EnchantmentHelper.getEnchantments(stack).entrySet()) {
             if (enchantment == entry.getKey()) {
                 return entry.getValue();
             }
@@ -66,7 +66,7 @@ public class QuadEnchantmentHelper {
         return getLevelFromTag(QuadEnchantmentTags.SNOW_BOOTS, stack) > 0;
     }
 
-    public static RegistryEntry<Enchantment> getRegistryEntry(Enchantment enchantment) {
-        return Registries.ENCHANTMENT.getEntry(enchantment);
+    public static Holder<Enchantment> getRegistryHolder(Enchantment enchantment) {
+        return BuiltInRegistries.ENCHANTMENT.wrapAsHolder(enchantment);
     }
 }
