@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(value = Wolf.class, priority = 1004)
-public abstract class WolfEntityMixin {
+public abstract class WolfMixin {
     @ModifyExpressionValue(method = "mobInteract", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/RandomSource;nextInt(I)I"))
     private int playerInCreative(int original, Player player) {
         return player.isCreative() ? 0 : original;

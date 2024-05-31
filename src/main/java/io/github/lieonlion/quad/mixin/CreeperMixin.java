@@ -16,8 +16,8 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(value = Creeper.class, priority = 1004)
-public abstract class CreeperEntityMixin extends Entity {
-    public CreeperEntityMixin(EntityType<?> type, Level level) {
+public abstract class CreeperMixin extends Entity {
+    public CreeperMixin(EntityType<?> type, Level level) {
         super(type, level);
     }
 
