@@ -2,16 +2,16 @@ package io.github.lieonlion.quad.enchantment;
 
 import io.github.lieonlion.quad.tags.QuadEnchantmentTags;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import net.minecraft.component.DataComponentType;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.ItemEnchantmentsComponent;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.tag.TagKey;
+import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.ItemEnchantments;
 
 public class QuadEnchantmentHelper {
     public static int getLevelFromTag(TagKey<Enchantment> enchantmentTagKey, ItemStack stack) {
@@ -28,16 +28,16 @@ public class QuadEnchantmentHelper {
 
     public static Enchantment getEnchantmentFromTag(TagKey<Enchantment> enchantmentTagKey, ItemStack stack) {
         if (stack == null) return null;
-        for (Object2IntMap.Entry<RegistryEntry<Enchantment>> entry : EnchantmentHelper.getEnchantments(stack).getEnchantmentsMap()) {
+        for (Object2IntMap.Entry<Holder<Enchantment>> entry : EnchantmentHelper.getEnchantmentsForCrafting(stack).entrySet()) {
             Enchantment enchantment = entry.getKey().value();
-            if (enchantment != null && enchantment.getRegistryEntry().isIn(enchantmentTagKey)) {
+            if (enchantment != null && enchantment.builtInRegistryHolder().is(enchantmentTagKey)) {
                 return enchantment;
             }
         } return null;
     }
 
     public static ItemStack getEquipmentFromTag(TagKey<Enchantment> enchantmentTagKey, LivingEntity living) {
-        for (ItemStack stack : living.getAllArmorItems()) {
+        for (ItemStack stack : living.getArmorSlots()) {
             if (hasEnchantmentFromTag(enchantmentTagKey, stack)) {
                 return stack;
             }
@@ -45,8 +45,8 @@ public class QuadEnchantmentHelper {
     }
 
     public static int getLevel(Enchantment enchantment, ItemStack stack) {
-        DataComponentType<ItemEnchantmentsComponent> dataComponentType = getEnchantmentsComponentType(stack);
-        ItemEnchantmentsComponent itemEnchantmentsComponent = stack.getOrDefault(dataComponentType, ItemEnchantmentsComponent.DEFAULT);
+        DataComponentType<ItemEnchantments> dataComponentType = getEnchantmentsComponentType(stack);
+        ItemEnchantments itemEnchantmentsComponent = stack.getOrDefault(dataComponentType, ItemEnchantments.EMPTY);
         return enchantment != null ? itemEnchantmentsComponent.getLevel(enchantment) : 0;
     }
 
@@ -66,7 +66,7 @@ public class QuadEnchantmentHelper {
         return getLevelFromTag(QuadEnchantmentTags.SNOW_BOOTS, stack) > 0;
     }
 
-    public static DataComponentType<ItemEnchantmentsComponent> getEnchantmentsComponentType(ItemStack stack) {
-        return stack != null && stack.isOf(Items.ENCHANTED_BOOK) ? DataComponentTypes.STORED_ENCHANTMENTS : DataComponentTypes.ENCHANTMENTS;
+    public static DataComponentType<ItemEnchantments> getEnchantmentsComponentType(ItemStack stack) {
+        return stack != null && stack.is(Items.ENCHANTED_BOOK) ? DataComponents.STORED_ENCHANTMENTS : DataComponents.ENCHANTMENTS;
     }
 }

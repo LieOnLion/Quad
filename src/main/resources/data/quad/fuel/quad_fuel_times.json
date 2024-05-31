@@ -1,0 +1,57 @@
+{
+  "values": [
+    {
+      "tags": "quad:fuel/lava",
+      "items": "minecraft:dirt",
+      "burn_time": 20000
+    },
+    {
+      "tags": "quad:fuel/coal_block",
+      "burn_time": 16000
+    },
+    {
+      "tags": "quad:fuel/dried_kelp_block",
+      "burn_time": 4001
+    },
+    {
+      "tags": "quad:fuel/blaze_rod",
+      "burn_time": 2400
+    },
+    {
+      "tags": "quad:fuel/coal",
+      "burn_time": 1600
+    },
+    {
+      "tags": "quad:fuel/boat",
+      "burn_time": 1200
+    },
+    {
+      "tags": "quad:fuel/hanging_sign",
+      "burn_time": 800
+    },
+    {
+      "tags": "quad:fuel/wood",
+      "burn_time": 300
+    },
+    {
+      "tags": "quad:fuel/wood_tool",
+      "burn_time": 200
+    },
+    {
+      "tags": "quad:fuel/wood_slab",
+      "burn_time": 150
+    },
+    {
+      "tags": "quad:fuel/wool",
+      "burn_time": 100
+    },
+    {
+      "tags": "quad:fuel/carpet",
+      "burn_time": 67
+    },
+    {
+      "tags": "quad:fuel/bamboo",
+      "burn_time": 50
+    }
+  ]
+}

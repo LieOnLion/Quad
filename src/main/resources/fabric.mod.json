@@ -16,6 +16,9 @@
 	"icon": "logo.png",
 	"environment": "*",
 	"entrypoints": {
+		"main": [
+			"io.github.lieonlion.quad.Quad"
+		]
 	},
 	"mixins": [
 		"${mod_id}.mixins.json"

@@ -3,42 +3,47 @@ package io.github.lieonlion.quad.util;
 import io.github.lieonlion.quad.enchantment.QuadEnchantmentHelper;
 import io.github.lieonlion.quad.tags.QuadEnchantmentTags;
 import io.github.lieonlion.quad.tags.QuadItemTags;
-import net.minecraft.block.*;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.CampfireBlock;
+import net.minecraft.world.level.block.CandleBlock;
+import net.minecraft.world.level.block.CandleCakeBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 public class QuadUtil {
-    public static void usedFireLighter(World world, BlockState state, BlockPos pos, PlayerEntity player, Hand hand, ItemStack stack) {
-        if (CampfireBlock.canBeLit(state) || CandleBlock.canBeLit(state) || CandleCakeBlock.isLitCandle(state)) {
-            world.setBlockState(pos, state.with(Properties.LIT, true), Block.NOTIFY_ALL_AND_REDRAW);
-        } usedFireLighter(world, pos, player, hand, stack);
+    public static void usedFireLighter(Level level, BlockState state, BlockPos pos, Player player, InteractionHand hand, ItemStack stack) {
+        if (CampfireBlock.canLight(state) || CandleBlock.canLight(state) || CandleCakeBlock.canLight(state)) {
+            level.setBlock(pos, state.setValue(BlockStateProperties.LIT, true), 11);
+        } usedFireLighter(level, pos, player, hand, stack);
     }
 
-    public static void usedFireLighter(World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack stack) {
-        world.playSound(player, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0f, world.getRandom().nextFloat() * 0.4f + 0.8f);
-        if (!stack.isOf(Items.ENCHANTED_BOOK) && !player.isCreative()) {
-            if (stack.isDamageable()) {
-                stack.damage(1, player, LivingEntity.getSlotForHand(hand));
+    public static void usedFireLighter(Level level, BlockPos pos, Player player, InteractionHand hand, ItemStack stack) {
+        SoundEvent soundEvent = stack.is(Items.FIRE_CHARGE) ? SoundEvents.FIRECHARGE_USE : SoundEvents.FLINTANDSTEEL_USE;
+        level.playSound(player, pos, soundEvent, SoundSource.BLOCKS, 1.0f, level.getRandom().nextFloat() * 0.4f + 0.8f);
+        if (!stack.is(Items.ENCHANTED_BOOK) && !player.isCreative()) {
+            if (stack.isDamageableItem()) {
+                stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
             } else if (!QuadEnchantmentHelper.hasFireLighter(stack)) {
-                stack.decrement(1);
+                stack.shrink(1);
             }
         }
     }
 
     public static boolean hasEquipmentFromTag(TagKey<Item> itemTagKey, LivingEntity living) {
-        for (ItemStack stack : living.getAllArmorItems()) {
-            if (stack.isIn(itemTagKey)) {
+        for (ItemStack stack : living.getArmorSlots()) {
+            if (stack.is(itemTagKey)) {
                 return true;
             }
         } return false;
@@ -49,11 +54,11 @@ public class QuadUtil {
     }
 
     public static boolean isFireLighter(ItemStack stack) {
-        return stack.isIn(QuadItemTags.FIRE_LIGHTER) || QuadEnchantmentHelper.hasFireLighter(stack);
+        return stack.is(QuadItemTags.FIRE_LIGHTER) || QuadEnchantmentHelper.hasFireLighter(stack);
     }
 
     public static boolean isSnowActsSolid(ItemStack stack) {
-        return stack.isIn(QuadItemTags.SNOW_ACTS_SOLID) || QuadEnchantmentHelper.hasSnowBoots(stack);
+        return stack.is(QuadItemTags.SNOW_ACTS_SOLID) || QuadEnchantmentHelper.hasSnowBoots(stack);
     }
 
     public static boolean hasBurnsProtector(LivingEntity living) {
