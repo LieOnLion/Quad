@@ -13,8 +13,8 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(value = BaseFireBlock.class, priority = 1004)
 public abstract class BaseFireBlockMixin {
     @WrapOperation(method = "isPortal", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;isPortalFrame(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z"))
-    private static boolean applyTagNetherPortalFrame(BlockState instance, BlockGetter blockGetter, BlockPos pos, Operation<Boolean> original) {
-        return (original.call(instance, blockGetter, pos) && instance.is(QuadBlockTags.NETHER_PORTAL_FRAME))
-                || instance.is(QuadBlockTags.NETHER_PORTAL_FRAME);
+    private static boolean applyTagNetherPortalBuilt(BlockState instance, BlockGetter blockGetter, BlockPos pos, Operation<Boolean> original) {
+        return (original.call(instance, blockGetter, pos) && instance.is(QuadBlockTags.NETHER_PORTAL_BUILT))
+                || instance.is(QuadBlockTags.NETHER_PORTAL_BUILT);
     }
 }

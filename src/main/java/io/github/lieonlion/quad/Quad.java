@@ -6,7 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,22 +19,24 @@ public class Quad {
     public Quad() {
         LOGGER.info("[Quad] Initialising the Quad mod power! >:P");
 
+        MinecraftForge.EVENT_BUS.addListener((EntityJoinLevelEvent event) -> {
+            if (event.getEntity() instanceof ItemEntity itemEntity) {
+                if (itemEntity.getItem().is(QuadItemTags.NEVER_DESPAWN)) {
+                    itemEntity.setUnlimitedLifetime();
+                } if (itemEntity.getItem().is(QuadItemTags.NO_GRAVITY)) {
+                    itemEntity.setNoGravity(true);
+                } else if (itemEntity.isNoGravity()) {
+                    itemEntity.setNoGravity(false);
+                }
+            }
+        });
+
+        //caching original fuel map when server started
+        MinecraftForge.EVENT_BUS.addListener((ServerStartedEvent event) -> QuadFuelRegistry.makeMap());
+        //forge event for items fuel times
         MinecraftForge.EVENT_BUS.addListener(QuadFuelRegistry::onFurnaceFuelBurnTime);
 
         MinecraftForge.EVENT_BUS.register(this);
-    }
-
-    @SubscribeEvent
-    public void entityLoad(EntityJoinLevelEvent event) {
-        if (event.getEntity() instanceof ItemEntity itemEntity) {
-            if (itemEntity.getItem().is(QuadItemTags.NEVER_DESPAWN)) {
-                itemEntity.setUnlimitedLifetime();
-            } if (itemEntity.getItem().is(QuadItemTags.NO_GRAVITY)) {
-                itemEntity.setNoGravity(true);
-            } else if (itemEntity.isNoGravity()) {
-                itemEntity.setNoGravity(false);
-            }
-        }
     }
 
     public static ResourceLocation asId(String id) {

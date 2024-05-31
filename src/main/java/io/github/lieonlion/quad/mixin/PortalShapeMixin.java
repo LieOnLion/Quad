@@ -23,6 +23,6 @@ public abstract class PortalShapeMixin {
     @Inject(method = "<init>", at = @At(value = "TAIL"))
     private void PortalShape(LevelAccessor pLevel, BlockPos pos, Direction.Axis pAxis, CallbackInfo ci) {
         FRAME = (BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) ->
-                blockState.is(QuadBlockTags.NETHER_PORTAL_FRAME);
+                blockState.is(QuadBlockTags.NETHER_PORTAL_BUILT);
     }
 }

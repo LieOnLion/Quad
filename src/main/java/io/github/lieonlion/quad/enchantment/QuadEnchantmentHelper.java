@@ -28,7 +28,7 @@ public class QuadEnchantmentHelper {
         if (stack == null) return null;
         for (Map.Entry<Enchantment, Integer> entry : EnchantmentHelper.getEnchantments(stack).entrySet()) {
             Enchantment enchantment = entry.getKey();
-            if (enchantment != null && getRegistryEntry(enchantment).is(enchantmentTagKey)) {
+            if (enchantment != null && getRegistryHolder(enchantment).is(enchantmentTagKey)) {
                 return enchantment;
             }
         } return null;
@@ -66,7 +66,7 @@ public class QuadEnchantmentHelper {
         return getLevelFromTag(QuadEnchantmentTags.SNOW_BOOTS, stack) > 0;
     }
 
-    public static Holder<Enchantment> getRegistryEntry(Enchantment enchantment) {
+    public static Holder<Enchantment> getRegistryHolder(Enchantment enchantment) {
         return BuiltInRegistries.ENCHANTMENT.wrapAsHolder(enchantment);
     }
 }
