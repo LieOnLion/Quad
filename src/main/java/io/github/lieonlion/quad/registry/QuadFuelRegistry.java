@@ -29,7 +29,9 @@ public class QuadFuelRegistry {
     public static void onFurnaceFuelBurnTime(FurnaceFuelBurnTimeEvent event) {
         ItemStack stack = event.getItemStack();
         //removing any overridden fuel times from quad tags
-        event.setBurnTime(default_map.getOrDefault(stack.getItem(), 0));
+        if (default_map.containsKey(stack.getItem())) {
+            event.setBurnTime(default_map.getOrDefault(stack.getItem(), 0));
+        }
         //overriding items from quad tags
         if (stack.is(QuadItemTags.FUEL_BAMBOO)) event.setBurnTime(50);
         if (stack.is(QuadItemTags.FUEL_CARPET)) event.setBurnTime(67);
