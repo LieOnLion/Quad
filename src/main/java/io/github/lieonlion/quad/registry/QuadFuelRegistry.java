@@ -2,11 +2,11 @@ package io.github.lieonlion.quad.registry;
 
 import io.github.lieonlion.quad.Quad;
 import io.github.lieonlion.quad.tags.QuadItemTags;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +17,7 @@ public class QuadFuelRegistry {
     public static void makeMap() {
         //cache original fuel map
         if (!default_map.isEmpty()) return;
-        ForgeRegistries.ITEMS.forEach(item -> {
+        BuiltInRegistries.ITEM.forEach(item -> {
             int burnTime = ForgeHooks.getBurnTime(item.getDefaultInstance(), null);
             if (burnTime > 0) {
                 default_map.put(item, burnTime);
@@ -29,7 +29,9 @@ public class QuadFuelRegistry {
     public static void onFurnaceFuelBurnTime(FurnaceFuelBurnTimeEvent event) {
         ItemStack stack = event.getItemStack();
         //removing any overridden fuel times from quad tags
-        event.setBurnTime(default_map.getOrDefault(stack.getItem(), 0));
+        if (default_map.containsKey(stack.getItem())) {
+            event.setBurnTime(default_map.getOrDefault(stack.getItem(), 0));
+        }
         //overriding items from quad tags
         if (stack.is(QuadItemTags.FUEL_BAMBOO)) event.setBurnTime(50);
         if (stack.is(QuadItemTags.FUEL_CARPET)) event.setBurnTime(67);
