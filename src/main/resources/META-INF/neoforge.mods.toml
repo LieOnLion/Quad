@@ -9,7 +9,7 @@ displayName="${mod_name}"
 authors="${mod_authors}"
 description='''${mod_description}'''
 logoFile="logo.png"
-displayURL="https://lieonlion.github.io/LieOnLion/"
+displayURL="https://lieonlion.github.io/"
 issueTrackerURL="https://github.com/LieOnLion/Quad/issues"
 
 [[mixins]]
