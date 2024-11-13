@@ -4,6 +4,7 @@ import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import io.github.lieonlion.quad.util.QuadUtil;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -15,22 +16,23 @@ import net.minecraft.world.level.block.TntBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
+import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 
+@Debug(export = true)
 @Mixin(value = TntBlock.class, priority = 1004)
 public abstract class TntBlockMixin {
-    @Shadow
-    private static void explode(Level level, BlockPos pos, @Nullable LivingEntity living) {}
+    @Shadow public abstract void onCaughtFire(BlockState state, Level level, BlockPos pos, @Nullable Direction face, @Nullable LivingEntity igniter);
 
     @ModifyReturnValue(method = "use", at = @At(value = "RETURN"))
     private InteractionResult applyTagFireLighters(InteractionResult original, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack stack = player.getItemInHand(hand);
         if (QuadUtil.isFireLighter(stack)) {
-            explode(level, pos, player);
+            this.onCaughtFire(state, level, pos, hit.getDirection(), player);
             level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
-            QuadUtil.usedFireLighter(level, state, pos, player, hand, stack);
+            QuadUtil.usedFireLighter(level, pos, player, hand, stack);
             return InteractionResult.sidedSuccess(level.isClientSide);
         } return original;
     }
