@@ -6,6 +6,7 @@ import io.github.lieonlion.quad.tags.QuadItemTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
@@ -30,6 +31,7 @@ public class QuadUtil {
 
     public static void usedFireLighter(Level level, BlockPos pos, Player player, InteractionHand hand, ItemStack stack) {
         level.playSound(player, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0f, level.getRandom().nextFloat() * 0.4f + 0.8f);
+        player.awardStat(Stats.ITEM_USED.get(stack.getItem()));
         if (!stack.is(Items.ENCHANTED_BOOK) && !player.isCreative()) {
             if (stack.isDamageableItem()) {
                 stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
