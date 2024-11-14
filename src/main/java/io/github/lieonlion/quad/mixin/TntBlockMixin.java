@@ -29,7 +29,7 @@ public abstract class TntBlockMixin {
         if (QuadUtil.isFireLighter(stack)) {
             explode(level, pos, player);
             level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
-            QuadUtil.usedFireLighter(level, state, pos, player, hand, stack);
+            QuadUtil.usedFireLighter(level, pos, player, hand, stack);
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         } return original;
     }
