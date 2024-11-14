@@ -13,7 +13,7 @@ public class QuadFuelRegistry {
     static FuelRegistry fuelRegistry = FuelRegistry.INSTANCE;
     public static Map<Item, Integer> default_map = new HashMap<>();
 
-    public static void makeMap() {
+    public static void cacheMap() {
         //cache original fuel map
         if (!default_map.isEmpty()) return;
         default_map = AbstractFurnaceBlockEntity.getFuel();

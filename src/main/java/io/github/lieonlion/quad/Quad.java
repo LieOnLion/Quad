@@ -32,8 +32,8 @@ public class Quad implements ModInitializer {
 			}
 		});
 
-		//caching original fuel map when server started
-		ServerLifecycleEvents.SERVER_STARTED.register(server -> QuadFuelRegistry.makeMap());
+		//caching original fuel map while server starting
+		ServerLifecycleEvents.SERVER_STARTING.register(server -> QuadFuelRegistry.cacheMap());
 		//reloading fuel items after tags have been loaded
 		CommonLifecycleEvents.TAGS_LOADED.register((registries, client) -> QuadFuelRegistry.registerFuel());
 	}
